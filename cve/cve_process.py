@@ -22,7 +22,7 @@ def year():
 
 
 
-def language():
+def platform():
     all_cve = {}
     language_set = set()
     no_cpe_cve = set()
@@ -43,19 +43,22 @@ def language():
                     vul_type = cpe_list[2]
                     if vul_type == 'a':
                         vul_type_count['a'] += 1
+                        vendor = cpe_list[3]
+                        product = cpe_list[4]
+                        version = cpe_list[5]
+                        language = cpe_list[8]
+                        language_set.add(language)
                     elif vul_type == 'h':
                         vul_type_count['h'] += 1
                     elif vul_type == 'o':
                         vul_type_count['o'] += 1
                     elif vul_type == '*':
                         vul_type_count['*'] += 1
-                    vendor = cpe_list[3]
-                    product = cpe_list[4]
-                    version = cpe_list[5]
-                    language = cpe_list[8]
-                    language_set.add(language)
-                    if 'dubbo' in cpe:
+
+                    if 'log4j' in cpe:
                         print(cpe)
+                    # if i['cve']['weaknesses'][0]['source'] == 'nvd@nist.gov':
+                    #     print(i['cve']['id'])
                 except:
                     no_cpe_cve.add(i['cve']['id'])
 
@@ -64,5 +67,5 @@ def language():
 
 if __name__ == '__main__':
     # year()
-    language()
+    platform()
 

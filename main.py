@@ -8,7 +8,7 @@ logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", level=lo
 VERSION = '1.0.0'
 
 
-class SSVC:
+class SSCSC:
     def __init__(self):
         self.path = args.arg_parse().path
         self.output = args.arg_parse().output
@@ -25,4 +25,4 @@ class SSVC:
 
 
 if __name__ == '__main__':
-    SSVC().run()
+    SSCSC().run()

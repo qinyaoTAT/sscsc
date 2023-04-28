@@ -3,7 +3,8 @@
 
 
 def run(files):
-    pass
+    for file in files:
+        pass
 
 
 
