@@ -21,7 +21,8 @@ class ANALYZE:
     def run(self):
         all_dependency = {}
         if self.language == 'all':
-            maven_analyzer.run(self.files['java']['maven'])
+            all_dependency.update(maven_analyzer.run(self.files['java']['maven']))
+            all_dependency.update()
         else:
             language_list = self.language.split(',')
         if all_dependency:

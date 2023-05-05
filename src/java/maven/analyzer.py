@@ -5,16 +5,16 @@ import xml.etree.ElementTree as ET
 from  src.utils.common import serch_vlun
 
 def run(files):
-    all_dependency = {}
+    maven_dependency = {}
     for file in files:
         tree = ET.parse(file)
         root = tree.getroot()
         properties_dict = {}
-        walk_node(root, properties_dict, all_dependency)
-    return all_dependency
+        walk_node(root, properties_dict, maven_dependency)
+    return maven_dependency
 
 
-def walk_node(node, properties_dict, all_dependency):
+def walk_node(node, properties_dict, maven_dependency):
     for child in node:
         child_tag = child.tag.split('}')[-1]
         if child_tag == 'properties':
@@ -41,15 +41,15 @@ def walk_node(node, properties_dict, all_dependency):
                         version = properties_dict[version]
             if not vendor:
                 return
-            if vendor not in all_dependency:
-                all_dependency[vendor] = {}
-            if product not in all_dependency[vendor]:
-                all_dependency[vendor][product] = []
+            if vendor not in maven_dependency:
+                maven_dependency[vendor] = {}
+            if product not in maven_dependency[vendor]:
+                maven_dependency[vendor][product] = []
             if version:
-                all_dependency[vendor][product].append(version)
+                maven_dependency[vendor][product].append(version)
 
         else:
-            walk_node(child, properties_dict, all_dependency)
+            walk_node(child, properties_dict, maven_dependency)
 
 
 if __name__ == '__main__':

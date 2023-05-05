@@ -55,7 +55,7 @@ def platform():
                     elif vul_type == '*':
                         vul_type_count['*'] += 1
 
-                    if 'log4j' in cpe:
+                    if 'alibaba' in cpe:
                         print(cpe)
                     # if i['cve']['weaknesses'][0]['source'] == 'nvd@nist.gov':
                     #     print(i['cve']['id'])
